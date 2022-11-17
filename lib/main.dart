@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         //brightness: Brightness.dark,
         //primaryColor: Colors.lightBlue[800],
 
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.indigo,
       ),
       home: const MyHomePage(title: 'Solar Panel Cleaning Bot'),
     );
@@ -35,7 +35,6 @@ class MyHomePage extends StatefulWidget {
   // case the title) provided by the parent (in this case the App widget) and
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
-
   final String title;
 
   @override
@@ -53,93 +52,43 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(16, 16, 16, 16),
-          child:
-          Column(
-            children: <Widget>[
-              const Text(
-              'Status',
+      appBar: null,
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Image.asset('assets/solar_panel.png'),
+            SizedBox(height: 10),
+            const Text(
+            'Ready to clean!',
+                style: TextStyle(
+                  fontSize: 16,
+                )
+            ),
+            SizedBox(height: 10),
+            Container(
+              height: 200,
+              width: 200,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    width: 10,
+                    color: Colors.indigo,
+                  ),
+              ),
+              child: Center(
+                child: const Text(
+                  'CLEAN',
                   style: TextStyle(
-                    fontSize: 40,
-                  )
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'Currently Cleaning:',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontSize: 20,
-                          height: 1.5,
-                        ),
-                      ),
-                      Text(
-                        'Last Cleaned: ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontSize: 20,
-                          height: 1.5,
-                        ),
-                      ),
-                      Text(
-                        'Max Temp: ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontSize: 20,
-                          height: 1.5,
-                        ),
-                      ),
-                    ],
+                    fontSize: 35,
+                    color: Colors.indigo,
+                    
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: <Widget>[
-                      Text(
-                        'No',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontSize: 20,
-                          height: 1.5,
-                        ),
-                      ),
-                      Text(
-                        'Today, 6:00 am',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontSize: 20,
-                          height: 1.5,
-                        ),
-                      ),
-                      Text(
-                        '60 deg Celcius',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontSize: 20,
-                          height: 1.5,
-                        ),
-                      ),
-                    ],
-                  ),
-                ]
+                )
               ),
-            ],
-          ),
+            ),
+          ],
         ),
+
       ),
     );
   }
