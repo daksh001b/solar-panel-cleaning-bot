@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "405936423555",
+    "firebase_url": "https://solar-panel-cleaning-bot-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "solar-panel-cleaning-bot",
+    "storage_bucket": "solar-panel-cleaning-bot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:405936423555:android:7ab6d5e1a9aa238267d1b6",
+        "android_client_info": {
+          "package_name": "com.pec.solar_panel_cleaning_bot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "405936423555-l66gietcldbjil1ef9jvbjpa026kdqgo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-AtBFxnw7gQHwl0CAyWPHblm4Z7Q9itc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "405936423555-l66gietcldbjil1ef9jvbjpa026kdqgo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "405936423555-8doe9avmpu1dr7ojjfbeiffils8roc1g.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.pec.solarPanelCleaningBot"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
