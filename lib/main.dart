@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async{
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -65,30 +71,32 @@ class _MyHomePageState extends State<MyHomePage> {
                 )
             ),
             SizedBox(height: 10),
-            Container(
-              height: 200,
-              width: 200,
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    width: 10,
-                    color: Colors.indigo,
-                  ),
-              ),
-              child: Center(
-                child: const Text(
-                  'CLEAN',
-                  style: TextStyle(
-                    fontSize: 35,
-                    color: Colors.indigo,
-                    
-                  ),
-                )
+            GestureDetector(
+              onTap: (){print("Container clicked");},
+              child: Container(
+                height: 200,
+                width: 200,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      width: 10,
+                      color: Colors.indigo,
+                    ),
+                ),
+                child: Center(
+                  child: const Text(
+                    'CLEAN',
+                    style: TextStyle(
+                      fontSize: 35,
+                      color: Colors.indigo,
+
+                    ),
+                  )
+                ),
               ),
             ),
           ],
         ),
-
       ),
     );
   }
