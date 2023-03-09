@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:solar_panel_cleaning_bot/Pages/bot_status.dart';
@@ -25,10 +26,30 @@ class Home extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
-      routes: {
-        '/': (context) => BotStatus(),
-        '/login':(context) => Login() ,
-      },
+      home: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.hasError) {
+            return Text(snapshot.error.toString());
+          }
+          if (snapshot.connectionState == ConnectionState.active ) {
+            if (snapshot.data == null) {
+              return Login();
+            }
+
+          else {
+            return BotStatus();
+          }
+        }
+            return Center(child: CircularProgressIndicator());
+    }
+        //}
+      ),
+      // routes: {
+      //   //'/': (context) => BotStatus(),
+      //   '/': (context) => Login(),
+      // },
     );
   }
+
 }
