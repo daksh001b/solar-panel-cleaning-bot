@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:solar_panel_cleaning_bot/Pages/bot_status.dart';
+import 'package:solar_panel_cleaning_bot/Pages/bot_status1.dart';
 import 'Pages/login_page.dart';
 import 'firebase_options.dart';
 
@@ -38,7 +39,7 @@ class Home extends StatelessWidget {
             }
 
           else {
-            return BotStatus();
+            return BotStatus1();
           }
         }
             return Center(child: CircularProgressIndicator());
