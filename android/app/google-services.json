@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "405936423555-gb40jutq98vbbmcp76fk26ogam3kbh3c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pec.solar_panel_cleaning_bot",
+            "certificate_hash": "564cd5f4eff739be7342877d8960bd2c728e6069"
+          }
+        },
+        {
+          "client_id": "405936423555-sqriqko0n4sr8j02hg9teep0fnoro6q8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pec.solar_panel_cleaning_bot",
+            "certificate_hash": "ce6e17ebf801dbe6dda81914aa6234aafd5e7c12"
+          }
+        },
+        {
           "client_id": "405936423555-l66gietcldbjil1ef9jvbjpa026kdqgo.apps.googleusercontent.com",
           "client_type": 3
         }

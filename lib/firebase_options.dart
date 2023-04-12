@@ -60,11 +60,12 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyB8f0W2dPs1tywgWnDeA0rl6onorCM8N48',
-    appId: '1:405936423555:ios:405ac7001a22aa9367d1b6',
+    appId: '1:405936423555:ios:9b384bcbdd93ec7567d1b6',
     messagingSenderId: '405936423555',
     projectId: 'solar-panel-cleaning-bot',
     databaseURL: 'https://solar-panel-cleaning-bot-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'solar-panel-cleaning-bot.appspot.com',
+    androidClientId: '405936423555-gb40jutq98vbbmcp76fk26ogam3kbh3c.apps.googleusercontent.com',
     iosClientId: '405936423555-8doe9avmpu1dr7ojjfbeiffils8roc1g.apps.googleusercontent.com',
     iosBundleId: 'com.pec.solarPanelCleaningBot',
   );
