@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:solar_panel_cleaning_bot/functionality/clean_operation.dart';
 import 'package:firebase_database/firebase_database.dart';
 import '../elements/loading.dart';
+import 'package:solar_panel_cleaning_bot/functionality/auth.dart';
 
 class BotStatus extends StatefulWidget {
   @override
@@ -170,6 +171,13 @@ class _BotStatus extends State<BotStatus> {
             )
             ],
           ),
+            ElevatedButton.icon(
+              onPressed: () {
+                AuthService().signOut();
+              },
+              icon: Icon(Icons.logout),
+              label: const Text("Signout"),
+            )
           ],
         ),
       ),

@@ -36,13 +36,12 @@ class Home extends StatelessWidget {
             if (snapshot.data == null) {
               return Login();
             }
-
-          else {
-            return BotStatus();
+            else {
+              return BotStatus();
+            }
           }
-        }
             return Center(child: CircularProgressIndicator());
-    }
+        }
         //}
       ),
       // routes: {
