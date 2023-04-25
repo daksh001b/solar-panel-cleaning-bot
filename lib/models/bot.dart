@@ -1,10 +1,8 @@
 class Bot{
 
-  final String name;
-  final String description;
+  String name;
+  String description;
   DateTime lastCleaned;
-  bool isCleaning;
-  bool isActive;
 
-  Bot({this.name, this.description, this.lastCleaned,this.isCleaning, this.isActive});
+  Bot(this.name, this.description, this.lastCleaned);
 }
