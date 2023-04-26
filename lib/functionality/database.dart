@@ -4,10 +4,10 @@ import 'package:solar_panel_cleaning_bot/models/bot.dart';
 
 
 class DatabaseService {
-  static late User user;
+  static User user;
   static final db = FirebaseFirestore.instance;
 
-  static void setupDatabase(String uid, String email, String name){
+  static Future<void> setupDatabase(String uid, String email, String name)async {
 
     print("-----------------inside setupdatabase func-----------------------");
 
@@ -31,22 +31,22 @@ class DatabaseService {
     );
   }
 
-  // Stream<List<Bot>> get bots {
-  //   List<String> botIdArray = user.bots;
-  //   CollectionReference botCollection = db.collection("bots")..where(FieldPath.documentId, whereIn: botIdArray);
-  //
-  //   return botCollection != null ? botCollection.snapshots().map(_botListFromSnapshot) : Stream.empty();
-  // }
+  Stream<List<Bot>> get bots {
+    List<String> botIdArray = user.bots;
+    CollectionReference botCollection = db.collection("bots")..where(FieldPath.documentId, whereIn: botIdArray);
 
-  // List<Bot> _botListFromSnapshot(QuerySnapshot snapshot){
-  //
-  //   return snapshot.docs.map((doc){
-  //     final data = doc.data() as Map<String, dynamic>;
-  //     return Bot(
-  //       data['name'] ?? '',
-  //       data['description'] ?? '',
-  //       data['lastCleaned'] != null ? data['lastCleaned'].toDate() : null,
-  //     );
-  //   }).toList();
-  // }
+    return botCollection.snapshots().map(_botListFromSnapshot);
+  }
+
+  List<Bot> _botListFromSnapshot(QuerySnapshot snapshot){
+
+    return snapshot.docs.map((doc){
+      final data = doc.data() as Map<String, dynamic>;
+      return Bot(
+        data['name'] ?? '',
+        data['description'] ?? '',
+        data['lastCleaned'] != null ? data['lastCleaned'].toDate() : null,
+      );
+    }).toList();
+  }
 }

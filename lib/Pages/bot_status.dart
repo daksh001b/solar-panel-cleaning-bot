@@ -17,15 +17,15 @@ class _BotStatus extends State<BotStatus> {
   bool isLoadingButton = false;
   bool isCleaning = true;
   int minTempLastCleaned = 0, maxTempLastCleaned = 0;
-  late int botId;
+  late String botId;
   late final _botRef;
   late StreamSubscription _botStatusStream;
 
   @override
-  void initState({int botId = 1}) {
+  void initState({String botId = "bot1"}) {
     super.initState();
     this.botId = botId;
-    _botRef = FirebaseDatabase.instance.ref('bot' + botId.toString());
+    _botRef = FirebaseDatabase.instance.ref(botId);
 
 
     updateIsCleaning();

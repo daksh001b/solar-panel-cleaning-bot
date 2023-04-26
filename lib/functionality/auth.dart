@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:solar_panel_cleaning_bot/models/user.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -20,7 +20,7 @@ class AuthService{
     print("--------------------inside google sign in func---------------------");
     final user = userCredential.user!;
     print(user);
-    DatabaseService.setupDatabase(user.uid, user.email!, user.displayName!);
+    await DatabaseService.setupDatabase(user.uid, user.email!, user.displayName!);
   }
 
   Future signOut() async {
