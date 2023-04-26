@@ -17,10 +17,6 @@ class Login extends StatelessWidget {
       onPressed: () async {
         BlocProvider.of<AuthBloc>(context).add(AuthGoogleLoginEvent());
         // await AuthService().googleSignIn();
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => BotList()),
-        );
       },
       icon: Icon(Icons.g_mobiledata_rounded),
       label: const Text("Log in with Google!"),
