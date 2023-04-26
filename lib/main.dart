@@ -1,24 +1,26 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:solar_panel_cleaning_bot/Pages/bot_status.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solar_panel_cleaning_bot/Pages/bot_list.dart';
+import 'package:solar_panel_cleaning_bot/blocs/bloc/auth.dart';
+import 'package:solar_panel_cleaning_bot/elements/loading.dart';
 import 'Pages/login_page.dart';
 import 'firebase_options.dart';
 
-void main() async{
-
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(Home());
+  runApp(BlocProvider(
+    create: (context) => AuthBloc()..add(AppStartEvent()),
+    child: Home(),
+  ));
 }
 
 class Home extends StatelessWidget {
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -27,30 +29,42 @@ class Home extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
-      home: StreamBuilder<User?>(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.hasError) {
-            return Text(snapshot.error.toString());
+      home: BlocBuilder<AuthBloc, AuthState>(
+        builder: (context, state) {
+          if (state is AuthAuthenticatedState) {
+            return BotList();
           }
-          if (snapshot.connectionState == ConnectionState.active ) {
-            if (snapshot.data == null) {
-              return Login();
-            }
-            else {
-              return BotList();
-              //return BotStatus();
-            }
+          if (state is AuthUnauthenticatedState) {
+            return Login();
           }
-            return Center(child: CircularProgressIndicator());
-        }
-        //}
+          if (state is AuthLoadingState) {
+            return Scaffold(body: Loading());
+          }
+          return Scaffold(body: Loading());
+        },
       ),
+      // home: StreamBuilder<User?>(
+      //     stream: FirebaseAuth.instance.authStateChanges(),
+      //     builder: (BuildContext context, AsyncSnapshot snapshot) {
+      //       if (snapshot.hasError) {
+      //         return Text(snapshot.error.toString());
+      //       }
+      //       if (snapshot.connectionState == ConnectionState.active) {
+      //         if (snapshot.data == null) {
+      //           return Login();
+      //         } else {
+      //           return BotList();
+      //           //return BotStatus();
+      //         }
+      //       }
+      //       return Center(child: CircularProgressIndicator());
+      //     }
+      //     //}
+      //     ),
       // routes: {
       //   //'/': (context) => BotStatus(),
       //   '/': (context) => Login(),
       // },
     );
   }
-
 }
