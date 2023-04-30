@@ -39,7 +39,7 @@ class Home extends StatelessWidget {
             }
 
           else {
-            return BotStatus1();
+            return BotStatus();
           }
         }
             return Center(child: CircularProgressIndicator());
