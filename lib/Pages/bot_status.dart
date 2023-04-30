@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+
 import 'package:solar_panel_cleaning_bot/functionality/clean_operation.dart';
 import 'package:firebase_database/firebase_database.dart';
 import '../elements/loading.dart';
+import 'package:solar_panel_cleaning_bot/functionality/auth.dart';
 
 class BotStatus extends StatefulWidget {
   @override
@@ -10,7 +12,7 @@ class BotStatus extends StatefulWidget {
 }
 
 class _BotStatus extends State<BotStatus> {
-  TimeOfDay time = TimeOfDay(hour: 10, minute: 30);
+
   bool isLoadingPage = true;
   bool isLoadingButton = false;
   bool isCleaning = true;
@@ -51,7 +53,6 @@ class _BotStatus extends State<BotStatus> {
   void updateMinMaxTempLastCleaned(){
 
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -167,12 +168,18 @@ class _BotStatus extends State<BotStatus> {
                     'max Temp'
                 ),
               ],
-            ),
-  ],
-              ),
-
-],
-    ),
+            )
+            ],
+          ),
+            ElevatedButton.icon(
+              onPressed: () {
+                AuthService().signOut();
+              },
+              icon: Icon(Icons.logout),
+              label: const Text("Signout"),
+            )
+          ],
+        ),
       ),
     );
   }
