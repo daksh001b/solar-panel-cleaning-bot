@@ -30,6 +30,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthLoadingState());
       try {
         Map<String, String> userDetails = await authService.googleSignIn();
+        print(userDetails['displayName']);
         await authService.saveDisplayName(userDetails["displayName"]);
         await authService.saveEmail(userDetails["email"]);
         await authService.saveUserId(userDetails["uid"]);
@@ -41,12 +42,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           ),
         );
       } catch (e) {
+        print("-----------------error---------------------");
+        print(e);
         emit(AuthUnauthenticatedState());
       }
     });
 
     on<AuthGoogleLogoutEvent>((event, emit) async {
       emit(AuthLoadingState());
+      await authService.signOut();
       await authService.deleteSecureStorage();
       emit(AuthUnauthenticatedState());
     });

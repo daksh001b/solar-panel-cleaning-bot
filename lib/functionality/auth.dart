@@ -61,12 +61,12 @@ class AuthService {
         "--------------------inside google sign in func---------------------");
     final user = userCredential.user!;
     print(user);
+    DatabaseService().setupDatabase(user.uid, user.email!, user.displayName!);
     return {
       "uid": user.uid,
       "email": user.email!,
       "displayName": user.displayName!
     };
-    // await DatabaseService.setupDatabase(user.uid, user.email!, user.displayName!);
   }
 
   Future signOut() async {

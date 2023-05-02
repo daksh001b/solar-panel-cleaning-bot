@@ -7,6 +7,9 @@ import '../elements/loading.dart';
 import 'package:solar_panel_cleaning_bot/functionality/auth.dart';
 
 class BotStatus extends StatefulWidget {
+  final String botId;
+  const BotStatus(this.botId);
+
   @override
   State<BotStatus> createState() => _BotStatus();
 }
@@ -108,76 +111,7 @@ class _BotStatus extends State<BotStatus> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-             children: [
-               Column(
-               children: [
 
-                 Container(
-                 height: 90,
-                 width: 175,
-                 decoration: BoxDecoration(
-                   border: Border.all(
-                     width: 2,
-                     color: Colors.black26,
-                   ),
-                   borderRadius: BorderRadius.all(Radius.circular(20)),
-                 ),
-                 child: Center(
-                     child: Text(
-                       minTempLastCleaned == null ? '--' : minTempLastCleaned.toString() + ' °C',
-                       style: TextStyle(
-                         fontSize: 20,
-                         color: Colors.black26,
-                       ),
-                     )
-                 ),
-                ),
-
-                Text(
-                  'min Temp'
-                ),
-              ]
-             ),
-            SizedBox(width: 20),
-            Column(
-              children: [
-                Container(
-                  height: 90,
-                  width: 175,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 2,
-                      color: Colors.black26,
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                  ),
-                  child: Center(
-                      child: Text(
-                        maxTempLastCleaned == null ? '--' : maxTempLastCleaned.toString() + ' °C',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black26,
-                        ),
-                      )
-                  ),
-                ),
-                Text(
-                    'max Temp'
-                ),
-              ],
-            )
-            ],
-          ),
-            ElevatedButton.icon(
-              onPressed: () {
-                AuthService().signOut();
-              },
-              icon: Icon(Icons.logout),
-              label: const Text("Signout"),
-            )
           ],
         ),
       ),
