@@ -53,7 +53,7 @@ class Home extends StatelessWidget {
       home: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
           if (state is AuthAuthenticatedState) {
-            return BotList();
+            return BotList(state.uid.toString());
           }
           if (state is AuthUnauthenticatedState) {
             return Login();

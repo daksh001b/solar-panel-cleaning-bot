@@ -26,20 +26,20 @@ class _BotListFillerState extends State<BotListFiller> {
             border: Border(bottom: BorderSide(color: Colors.black54)),
           ),
           child: ListTile(
-              onTap: (){
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => BotStatus(botList[index].botId)));
-              },
-              title: Text(botList[index].name,
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black54,
-                  )),
-              subtitle: Text(botList[index].description,
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.black26,
-                  )),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => BotStatus(botList[index].botId)));
+            },
+            title: Text(botList[index].name,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black54,
+                )),
+            subtitle: Text(botList[index].description,
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black26,
+                )),
           ),
         );
       },

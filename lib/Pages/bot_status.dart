@@ -15,7 +15,6 @@ class BotStatus extends StatefulWidget {
 }
 
 class _BotStatus extends State<BotStatus> {
-
   bool isLoadingPage = true;
   bool isLoadingButton = false;
   bool isCleaning = true;
@@ -30,17 +29,13 @@ class _BotStatus extends State<BotStatus> {
     this.botId = botId;
     _botRef = FirebaseDatabase.instance.ref(botId);
 
-
     updateIsCleaning();
   }
 
-  void updateIsCleaning(){
-
+  void updateIsCleaning() {
     _botStatusStream = _botRef.onValue.listen((event) {
-
       print("event listner called!");
-      if(event.snapshot.exists) {
-
+      if (event.snapshot.exists) {
         final map = Map<String, dynamic>.from(event.snapshot.value);
         setState(() {
           isCleaning = map['needsCleaning'];
@@ -53,68 +48,69 @@ class _BotStatus extends State<BotStatus> {
     });
   }
 
-  void updateMinMaxTempLastCleaned(){
-
-  }
+  void updateMinMaxTempLastCleaned() {}
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: null,
-      body: isLoadingPage ? Loading() :SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Image.asset('assets/solar_panel.png'),
-            SizedBox(height: 20),
-            Text(
-                isCleaning ? 'CLEANING AT THE MOMENT...': 'Ready to clean!',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black54,
-                  fontWeight: FontWeight.bold,
-                )
-            ),
-            SizedBox(height: 20),
-            GestureDetector(
-              onTap: () async {
-
-                if(!isCleaning){
-                  setState(() {
-                  isLoadingButton= true;
-                  });
-                  final result = await CleanOperation.cleanNow();
-                  setState(() {
-                  isLoadingButton= false;
-                  isCleaning = result;
-                  });
-                }
-              },
-              child: Container(
-                height: 200,
-                width: 200,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    width: 10,
-                    color: !isCleaning ? Colors.indigo : Colors.black26,
-                  ),
-                ),
-                child: Center(
-                    child: isLoadingButton ? Loading() : Text(
-                      'CLEAN',
+      body: isLoadingPage
+          ? Loading()
+          : SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  Image.asset('assets/solar_panel.png'),
+                  SizedBox(height: 20),
+                  Text(
+                      isCleaning
+                          ? 'CLEANING AT THE MOMENT...'
+                          : 'Ready to clean!',
                       style: TextStyle(
-                        fontSize: 35,
-                        color: !isCleaning ? Colors.indigo : Colors.black26,
+                        fontSize: 16,
+                        color: Colors.black54,
+                        fontWeight: FontWeight.bold,
+                      )),
+                  SizedBox(height: 20),
+                  GestureDetector(
+                    onTap: () async {
+                      if (!isCleaning) {
+                        setState(() {
+                          isLoadingButton = true;
+                        });
+                        final result = await CleanOperation.cleanNow();
+                        setState(() {
+                          isLoadingButton = false;
+                          isCleaning = result;
+                        });
+                      }
+                    },
+                    child: Container(
+                      height: 200,
+                      width: 200,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          width: 10,
+                          color: !isCleaning ? Colors.indigo : Colors.black26,
+                        ),
                       ),
-                    )
-                ),
+                      child: Center(
+                          child: isLoadingButton
+                              ? Loading()
+                              : Text(
+                                  'CLEAN',
+                                  style: TextStyle(
+                                    fontSize: 35,
+                                    color: !isCleaning
+                                        ? Colors.indigo
+                                        : Colors.black26,
+                                  ),
+                                )),
+                    ),
+                  ),
+                ],
               ),
             ),
-
-          ],
-        ),
-      ),
     );
   }
 
