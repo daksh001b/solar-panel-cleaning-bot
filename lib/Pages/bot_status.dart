@@ -11,22 +11,24 @@ class BotStatus extends StatefulWidget {
   const BotStatus(this.botId);
 
   @override
-  State<BotStatus> createState() => _BotStatus();
+  State<BotStatus> createState() => _BotStatus(botId);
 }
 
 class _BotStatus extends State<BotStatus> {
+  _BotStatus(this.botId);
   bool isLoadingPage = true;
   bool isLoadingButton = false;
   bool isCleaning = true;
   int minTempLastCleaned = 0, maxTempLastCleaned = 0;
-  late String botId;
+  String botId;
   late final _botRef;
   late StreamSubscription _botStatusStream;
 
   @override
-  void initState({String botId = "bot1"}) {
+  void initState() {
     super.initState();
-    this.botId = botId;
+    print("botId ------------------> " + botId);
+    //this.botId = botId;
     _botRef = FirebaseDatabase.instance.ref(botId);
 
     updateIsCleaning();
@@ -39,8 +41,6 @@ class _BotStatus extends State<BotStatus> {
         final map = Map<String, dynamic>.from(event.snapshot.value);
         setState(() {
           isCleaning = map['needsCleaning'];
-          minTempLastCleaned = map['minTempLastCleaned'];
-          maxTempLastCleaned = map['maxTempLastCleaned'];
           isLoadingPage = false;
         });
       }
@@ -77,7 +77,7 @@ class _BotStatus extends State<BotStatus> {
                         setState(() {
                           isLoadingButton = true;
                         });
-                        final result = await CleanOperation.cleanNow();
+                        final result = await CleanOperation.cleanNow(botId);
                         setState(() {
                           isLoadingButton = false;
                           isCleaning = result;

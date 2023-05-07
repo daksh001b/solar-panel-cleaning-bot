@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 class CleanOperation{
 
-  static Future<bool> cleanNow() async{
+  static Future<bool> cleanNow(botId) async{
     try {
-      DatabaseReference botDataRef = FirebaseDatabase.instance.ref().child('bot1/');
+      DatabaseReference botDataRef = FirebaseDatabase.instance.ref().child(botId+'/');
       await botDataRef.update({'needsCleaning': true});
       return true;
 
